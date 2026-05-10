@@ -36,7 +36,7 @@ const DEMO = [
   },
   {
     email: 'support@ethara.dev',
-    password: 'support@123',
+    password: 'support@1234',
     role: 'Support',
     color: 'bg-sky-500/10 text-sky-400 border-sky-500/20',
   },
