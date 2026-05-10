@@ -24,7 +24,7 @@ const NAV = [
   { href: '/users',       icon: Users,           label: 'Users',      roles: ['admin','support'] },
 ]
 
-export function Sidebar({ profile }) {
+export function Sidebar({ profile, mobileOpen = false, onClose = () => {} }) {
   const pathname            = usePathname()
   const router              = useRouter()
   const { theme, setTheme } = useTheme()
@@ -42,10 +42,24 @@ export function Sidebar({ profile }) {
 
   const visible = NAV.filter(n => n.roles.includes(profile?.role))
 
+  const mobileVisible = mobileOpen
+
   return (
     <TooltipProvider delayDuration={0}>
+      {/* Backdrop for mobile */}
+      {mobileVisible && (
+        <div
+          className="fixed inset-0 bg-black/40 z-40 sm:hidden"
+          onClick={onClose}
+          aria-hidden
+        />
+      )}
+
       <aside className={cn(
         'h-screen shrink-0 flex flex-col border-r border-border bg-sidebar overflow-y-auto overflow-x-hidden transition-all duration-200',
+        // mobile: hidden unless opened; on sm+ show normally
+        mobileVisible ? 'fixed inset-y-0 left-0 z-50 w-[220px] shadow-lg sm:relative sm:z-auto' : 'hidden sm:flex',
+        // width when visible on desktop
         collapsed ? 'w-[60px]' : 'w-[220px]'
       )}>
         {/* Logo + collapse toggle */}
@@ -79,7 +93,7 @@ export function Sidebar({ profile }) {
           {!collapsed && (
             <button
               onClick={() => setCollapsed(true)}
-              className="size-6 rounded-md flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-accent transition-colors"
+              className="size-6 rounded-md flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-accent transition-colors hidden sm:inline-flex"
             >
               <ChevronLeft className="size-3.5" />
             </button>
@@ -119,33 +133,22 @@ export function Sidebar({ profile }) {
             )
 
             return collapsed ? (
-              <Tooltip key={item.href}>
-                <TooltipTrigger asChild>
-                  <Link href={item.href}>{linkContent}</Link>
-                </TooltipTrigger>
-                <TooltipContent side="right" className="text-xs">
-                  {item.label}
-                </TooltipContent>
-              </Tooltip>
+              <Link key={item.href} href={item.href} title={item.label} onClick={() => { if (mobileVisible) onClose() }}>{linkContent}</Link>
             ) : (
-              <Link key={item.href} href={item.href}>{linkContent}</Link>
+              <Link key={item.href} href={item.href} onClick={() => { if (mobileVisible) onClose() }}>{linkContent}</Link>
             )
           })}
         </nav>
 
         {/* ⌘K hint */}
         {collapsed ? (
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <button
-                onClick={() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true, bubbles: true }))}
-                className="mx-2 mb-2 p-2 rounded-lg border border-border text-muted-foreground hover:text-foreground hover:bg-accent transition-colors flex justify-center cursor-pointer shrink-0"
-              >
-                <Search className="size-4" />
-              </button>
-            </TooltipTrigger>
-            <TooltipContent side="right" className="text-xs">Search ⌘K</TooltipContent>
-          </Tooltip>
+          <button
+            title="Search ⌘K"
+            onClick={() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true, bubbles: true }))}
+            className="mx-2 mb-2 p-2 rounded-lg border border-border text-muted-foreground hover:text-foreground hover:bg-accent transition-colors flex justify-center cursor-pointer shrink-0"
+          >
+            <Search className="size-4" />
+          </button>
         ) : (
           <button
             onClick={() => window.dispatchEvent(new KeyboardEvent('keydown', { key: 'k', metaKey: true, bubbles: true }))}
@@ -163,42 +166,30 @@ export function Sidebar({ profile }) {
           collapsed ? 'px-2' : 'px-3'
         )}>
           {collapsed ? (
-            <>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <button
-                    onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                    className="w-full flex justify-center p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent transition-colors mb-1 cursor-pointer"
-                  >
-                    <Sun className="size-3.5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                    <Moon className="absolute size-3.5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                  </button>
-                </TooltipTrigger>
-                <TooltipContent side="right" className="text-xs">Toggle theme</TooltipContent>
-              </Tooltip>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <button
-                    onClick={signOut}
-                    className="w-full flex justify-center p-2 rounded-lg text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors mb-1 cursor-pointer"
-                  >
-                    <LogOut className="size-3.5" />
-                  </button>
-                </TooltipTrigger>
-                <TooltipContent side="right" className="text-xs">Sign out</TooltipContent>
-              </Tooltip>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <button
-                    onClick={() => setCollapsed(false)}
-                    className="w-full flex justify-center p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent transition-colors cursor-pointer"
-                  >
-                    <ChevronRight className="size-3.5" />
-                  </button>
-                </TooltipTrigger>
-                <TooltipContent side="right" className="text-xs">Expand sidebar</TooltipContent>
-              </Tooltip>
-            </>
+              <>
+                <button
+                  title="Toggle theme"
+                  onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+                  className="w-full flex justify-center p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent transition-colors mb-1 cursor-pointer"
+                >
+                  <Sun className="size-3.5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+                  <Moon className="absolute size-3.5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+                </button>
+                <button
+                  title="Sign out"
+                  onClick={() => { signOut(); if (mobileVisible) onClose() }}
+                  className="w-full flex justify-center p-2 rounded-lg text-muted-foreground hover:text-destructive hover:bg-destructive/10 transition-colors mb-1 cursor-pointer"
+                >
+                  <LogOut className="size-3.5" />
+                </button>
+                <button
+                  title="Expand sidebar"
+                  onClick={() => setCollapsed(false)}
+                  className="w-full flex justify-center p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-accent transition-colors cursor-pointer"
+                >
+                  <ChevronRight className="size-3.5" />
+                </button>
+              </>
           ) : (
             <>
               <div className="flex items-center gap-2.5 px-2 py-1.5 mb-2">
@@ -237,6 +228,16 @@ export function Sidebar({ profile }) {
           )}
         </div>
       </aside>
+      {/* Show a small expand handle on larger screens when collapsed */}
+      {collapsed && !mobileVisible && (
+        <button
+          aria-label="Expand sidebar"
+          onClick={() => setCollapsed(false)}
+          className="hidden sm:flex fixed left-[60px] top-16 z-[10001] -ml-2 p-2 rounded-full bg-background border border-border shadow-sm text-muted-foreground hover:text-foreground hover:bg-accent"
+        >
+          <ChevronRight className="size-4" />
+        </button>
+      )}
     </TooltipProvider>
   )
 }
