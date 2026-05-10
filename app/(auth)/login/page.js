@@ -16,8 +16,8 @@ import { cn } from '@/lib/utils'
 
 const DEMO = [
   { email: 'admin@ethara.dev',     password: 'admin@1234',     role: 'Admin',     color: 'bg-purple-500/10 text-purple-400 border-purple-500/20' },
-  { email: 'support@ethara.dev',   password: 'support@1234',   role: 'Support',   color: 'bg-sky-500/10 text-sky-400 border-sky-500/20' },
-  { email: 'dev@1234', password: 'Developer@123456', role: 'Developer', color: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' },
+  { email: 'support@ethara.dev',   password: 'support@123',   role: 'Support',   color: 'bg-sky-500/10 text-sky-400 border-sky-500/20' },
+  { email: 'developer@ethara.dev', password: 'dev@1234', role: 'Developer', color: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' },
   { email: 'agent@ethara.dev',     password: 'agent@1234',     role: 'Agent',     color: 'bg-orange-500/10 text-orange-400 border-orange-500/20' },
 ]
 
