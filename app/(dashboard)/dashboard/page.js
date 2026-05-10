@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button'
 import { Ticket, TrendingUp, CheckCircle, Zap, ListTodo, Plus, AlertTriangle } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
-export const metadata = { title: 'Dashboard — Ethata' }
+export const metadata = { title: 'Dashboard — ethara' }
 
 export default async function DashboardPage() {
   const profile = await getProfile()

@@ -1,5 +1,5 @@
 -- ============================================================
--- ETHATA TICKET MANAGEMENT SYSTEM - SUPABASE SCHEMA
+-- ethara TICKET MANAGEMENT SYSTEM - SUPABASE SCHEMA
 -- Run this ENTIRE file in Supabase SQL Editor
 -- ============================================================
 

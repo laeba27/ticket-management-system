@@ -1,4 +1,4 @@
-# Ethata — Ticket Management System
+# ethara — Ticket Management System
 
 A production-grade support ticket management system built with Next.js 16, Supabase, and Tailwind CSS v4. Designed for teams that need structured ticket workflows with role-based access control, SLA tracking, and developer task management.
 
@@ -197,7 +197,7 @@ todos   (1:many) ──── ticket_events (via todo_id)
 
 ```bash
 git clone <repo-url>
-cd ethata
+cd ethara
 npm install
 ```
 
@@ -300,7 +300,7 @@ Click **Deploy**. Vercel will build and deploy automatically. Future pushes to `
 ## Project Structure
 
 ```
-ethata/
+ethara/
 ├── app/
 │   ├── (auth)/
 │   │   └── login/               # Login page

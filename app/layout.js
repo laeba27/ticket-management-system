@@ -2,7 +2,7 @@ import './globals.css'
 import { ThemeProvider } from '@/components/ThemeProvider'
 
 export const metadata = {
-  title: 'Ethata — Ticket Management',
+  title: 'ethara — Ticket Management',
   description: 'Professional ticket management system with role-based access control',
 }
 

@@ -15,10 +15,10 @@ import { useTheme } from 'next-themes'
 import { cn } from '@/lib/utils'
 
 const DEMO = [
-  { email: 'admin@ethata.dev',     password: 'Admin@123456',     role: 'Admin',     color: 'bg-purple-500/10 text-purple-400 border-purple-500/20' },
-  { email: 'support@ethata.dev',   password: 'Support@123456',   role: 'Support',   color: 'bg-sky-500/10 text-sky-400 border-sky-500/20' },
-  { email: 'developer@ethata.dev', password: 'Developer@123456', role: 'Developer', color: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' },
-  { email: 'agent@ethata.dev',     password: 'Agent@123456',     role: 'Agent',     color: 'bg-orange-500/10 text-orange-400 border-orange-500/20' },
+  { email: 'admin@ethara.dev',     password: 'admin@1234',     role: 'Admin',     color: 'bg-purple-500/10 text-purple-400 border-purple-500/20' },
+  { email: 'support@ethara.dev',   password: 'support@1234',   role: 'Support',   color: 'bg-sky-500/10 text-sky-400 border-sky-500/20' },
+  { email: 'dev@1234', password: 'Developer@123456', role: 'Developer', color: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' },
+  { email: 'agent@ethara.dev',     password: 'agent@1234',     role: 'Agent',     color: 'bg-orange-500/10 text-orange-400 border-orange-500/20' },
 ]
 
 export default function LoginPage() {
@@ -67,7 +67,7 @@ export default function LoginPage() {
           </div>
           <h1 className="text-2xl font-bold tracking-tight text-foreground"
             style={{ fontFamily: 'var(--font-display)' }}>
-            Ethata
+            ethara
           </h1>
           <p className="text-sm text-muted-foreground mt-1">Ticket Management System</p>
         </div>
@@ -86,7 +86,7 @@ export default function LoginPage() {
                   type="email"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
-                  placeholder="admin@ethata.dev"
+                  placeholder="admin@ethara.dev"
                   required
                   className="h-9"
                 />

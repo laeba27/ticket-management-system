@@ -1,5 +1,5 @@
 -- ============================================================
--- ETHATA TICKET MANAGEMENT SYSTEM - SEED DATA
+-- ethara TICKET MANAGEMENT SYSTEM - SEED DATA
 -- Run AFTER schema.sql
 -- Creates 3 default users: admin, support, developer
 -- ============================================================
@@ -11,10 +11,10 @@
 -- ============================================================
 -- DEFAULT USER CREDENTIALS
 -- ============================================================
--- admin@ethata.dev     / Admin@123456
--- support@ethata.dev   / Support@123456
--- developer@ethata.dev / Developer@123456
--- agent@ethata.dev     / Agent@123456
+-- admin@ethara.dev     / admin@1234
+-- support@ethara.dev   / support@1234
+-- developer@ethara.dev / dev@1234
+-- agent@ethara.dev     / agent@1234
 -- ============================================================
 
 -- NOTE: In Supabase Cloud, create users via Dashboard > Authentication > Users
@@ -31,19 +31,19 @@
 -- Replace these emails with the ones you registered:
 UPDATE public.profiles
 SET role = 'admin', full_name = 'Admin User'
-WHERE email = 'admin@ethata.dev';
+WHERE email = 'admin@ethara.dev';
 
 UPDATE public.profiles
 SET role = 'support', full_name = 'Support User'
-WHERE email = 'support@ethata.dev';
+WHERE email = 'support@ethara.dev';
 
 UPDATE public.profiles
 SET role = 'developer', full_name = 'Developer User'
-WHERE email = 'developer@ethata.dev';
+WHERE email = 'developer@ethara.dev';
 
 UPDATE public.profiles
 SET role = 'agent', full_name = 'Agent User'
-WHERE email = 'agent@ethata.dev';
+WHERE email = 'agent@ethara.dev';
 
 -- ============================================================
 -- SAMPLE TICKETS (run after roles are assigned)
@@ -59,10 +59,10 @@ DECLARE
   v_ticket2_id  UUID;
   v_ticket3_id  UUID;
 BEGIN
-  SELECT id INTO v_agent_id   FROM public.profiles WHERE email = 'agent@ethata.dev';
-  SELECT id INTO v_support_id FROM public.profiles WHERE email = 'support@ethata.dev';
-  SELECT id INTO v_dev_id     FROM public.profiles WHERE email = 'developer@ethata.dev';
-  SELECT id INTO v_admin_id   FROM public.profiles WHERE email = 'admin@ethata.dev';
+  SELECT id INTO v_agent_id   FROM public.profiles WHERE email = 'agent@ethara.dev';
+  SELECT id INTO v_support_id FROM public.profiles WHERE email = 'support@ethara.dev';
+  SELECT id INTO v_dev_id     FROM public.profiles WHERE email = 'developer@ethara.dev';
+  SELECT id INTO v_admin_id   FROM public.profiles WHERE email = 'admin@ethara.dev';
 
   -- Only insert sample data if all required profiles exist
   IF v_agent_id IS NULL OR v_support_id IS NULL OR v_dev_id IS NULL THEN

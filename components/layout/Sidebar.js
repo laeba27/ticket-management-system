@@ -62,7 +62,7 @@ export function Sidebar({ profile }) {
                 E
               </div>
               <span className="font-bold text-[15px] text-foreground tracking-tight" style={{ fontFamily: 'var(--font-display)' }}>
-                Ethata
+                ethara
               </span>
             </div>
           )}
