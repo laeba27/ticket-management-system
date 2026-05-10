@@ -66,28 +66,6 @@ A production-grade support ticket management system built with Next.js 16, Supab
 - Command palette actions filtered by role
 
 ---
-
-## Role Permissions
-
-| Action | Agent | Developer | Support | Admin |
-|---|---|---|---|---|
-| Create ticket | ✅ | ❌ | ❌ | ✅ |
-| View own tickets | ✅ | ❌ | ✅ | ✅ |
-| View all tickets | ❌ | ✅ | ✅ | ✅ |
-| Change ticket status | ✅ (own) | ❌ | ✅ | ✅ |
-| Change ticket priority | ❌ | ❌ | ✅ | ✅ |
-| Assign ticket | ❌ | ❌ | ✅ | ✅ |
-| Add public comment | ✅ | ✅ | ✅ | ✅ |
-| Add internal note | ❌ | ✅ | ✅ | ✅ |
-| View internal notes | ❌ | ✅ | ✅ | ✅ |
-| Add/remove tags | ❌ | ❌ | ✅ | ✅ |
-| Create task (todo) | ❌ | ❌ | ✅ | ✅ |
-| Change task status | ❌ | ✅ (own) | ❌ | ✅ |
-| Manage users | ❌ | ❌ | ✅ | ✅ |
-| Use @mentions | ❌ | ✅ | ✅ | ✅ |
-
----
-
 ## Tech Stack
 
 | Layer | Technology |
